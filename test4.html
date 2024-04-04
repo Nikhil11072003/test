@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Website</title>
+    <style>
+         body{
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 0px;
+            padding: 0px;
+            background-image: url(new.jpeg);
+            background-repeat: no-repeat;
+            height: 1400px;
+            color: whitesmoke;
+            background-size: cover;
+
+        }
+        .left{
+            border: 3px solid whitesmoke;
+            display: inline-block;
+            position: absolute;
+            left: 30px;
+            top: 20px;
+        }
+        .left img{
+            width: 100px;
+            height: 63px;
+        }
+        .imagebox img{
+            width: -webkit-fill-available;
+            height: -webkit-fill-available;
+        }
+        .left div{
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+        .mid{
+            display: block;
+            width: 47%;
+            margin: 20px auto;
+            
+        }
+        .right{
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            display: inline-block;
+        }
+        .navbar li{
+            display: inline-block;
+            font-size: 25px;
+            margin-top: 10px;
+        }
+        .navbar li a{
+            color: whitesmoke;
+            text-decoration: none;
+            padding: 4px 3px;
+            margin-left: 15px;
+            margin-right: 15px;
+            border-radius: 10px;
+        }
+        .navbar li a:hover,.navbar li a.active{
+            text-decoration: underline;
+            color: rgb(3, 255, 255);
+        }
+        .btn{
+            font-family: 'Roboto Condensed', sans-serif;
+            margin-right: 10px;
+            margin-left: 10px;
+            color: whitesmoke;
+            background-color: black;
+            padding: 7px 14px;
+            border-radius: 10px;
+        }
+        .btn:hover{
+            color: aqua;
+            background-color: rgb(118, 119, 117);
+        }
+        .container{
+            border: 2px solid whitesmoke;
+            margin: 70px 80px;
+            padding: 75px;
+            width: 40%;
+            border-radius: 28px;
+            margin-top: 100px;
+        }
+        .form-group input{
+            display: block;
+            border-radius: 6px;
+            border: 2px solid;
+        }
+        .foot{
+            font-size: 35px;
+            margin-top: -20px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header content -->
+    <header class="header">
+        <div class="left">
+            <img src="images.png" alt="">
+            <div>Nikhil Thakur</div>
+        </div>
+        <div class="mid">
+            <ul class="navbar">
+                <li><a href="#" class="active">Form</a></li>
+                <li><a href="#">Info</a></li>
+                <li><a href="#">Education</a></li>
+                <li><a href="#">Resume</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <button class="btn">Call Us Now</button>
+            <button class="btn">Email Us</button>
+        </div>
+    </header>
+
+    <!-- Form content -->
+    <div class="container">
+        <h1>Please Fill This Form</h1>
+        <form id="myForm">
+            <div class="form-group">
+                <label for="name">Name</label><input type="text" id="name">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label><input type="number" id="age">
+            </div>
+            <div class="form-group">
+                <label for="add">Address</label><input type="text" id="add">
+            </div>
+            <div class="form-group">
+                <label for="con">Contact No</label><input type="number" id="con">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label><input type="email" id="email">
+            </div>
+            <button class="btn" id="btnSub">Submit</button>
+            <p id="ResponseBox">This is response box</p>
+        </form>
+    </div>
+
+    <!-- Footer content -->
+    <footer class="footer">
+        <div class="foot">
+            <center>This Website is made as a test Website as a part of web development practical.</center>
+            <h3>Hobbies:</h3>
+            <ul id="hobbies-list-footer"></ul>
+            <h3>Current Date and Time:</h3>
+            <p id="current-date"></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript code -->
+    <script>
+        // Function to validate email format
+        function validateEmail(email) {
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+
+        // Array of hobbies
+        const hobbies = ["Reading", "Traveling", "Coding"];
+
+        // Loop to display hobbies in the footer
+        const hobbiesListFooter = document.getElementById('hobbies-list-footer');
+        for (let i = 0; i < hobbies.length; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = hobbies[i];
+            hobbiesListFooter.appendChild(listItem);
+        }
+
+        // Get current date and time
+        const currentDate = new Date();
+        document.getElementById('current-date').textContent = currentDate;
+
+        // Event listener for form submission
+        const myForm = document.getElementById("myForm");
+        myForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            if (name === "") {
+                alert("Name is required");
+            } else if (!validateEmail(email)) {
+                alert("Invalid email format");
+            } else {
+                document.getElementById('ResponseBox').textContent = 'Form submitted successfully!';
+            }
+        });
+    </script>
+</body>
+
+</html>
